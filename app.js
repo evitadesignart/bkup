@@ -136,7 +136,6 @@
     }
     el.innerHTML = cards.map(c => `
       <div class="mini-card">
-        <span class="tag">${escapeHtml(c.domain)}</span>
         <div class="text">${escapeHtml(c.text)}</div>
         <div class="meta">${new Date(c.created_at).toLocaleDateString('ja-JP')}</div>
       </div>
@@ -192,12 +191,10 @@
     area.innerHTML = `
       <div class="match-row">
         <div class="match-card">
-          <div class="tag">${escapeHtml(a.domain)}</div>
           <div class="text">${escapeHtml(a.text)}</div>
         </div>
         <div class="match-x">×</div>
         <div class="match-card">
-          <div class="tag">${escapeHtml(b.domain)}</div>
           <div class="text">${escapeHtml(b.text)}</div>
         </div>
       </div>
@@ -348,25 +345,26 @@
     let startX;
     let scrollLeft;
 
+    const snapBack = () => {
+      isDown = false;
+      slider.style.cursor = 'auto';
+      slider.style.scrollSnapType = 'x mandatory'; // ドラッグ終了時にスナップを戻す
+    };
+
     slider.addEventListener('mousedown', (e) => {
       isDown = true;
       slider.style.cursor = 'grabbing';
+      slider.style.scrollSnapType = 'none'; // ドラッグ中はCSSの強制スナップを解除する
       startX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
     });
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.style.cursor = 'auto';
-    });
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.style.cursor = 'auto';
-    });
+    slider.addEventListener('mouseleave', snapBack);
+    slider.addEventListener('mouseup', snapBack);
     slider.addEventListener('mousemove', (e) => {
       if(!isDown) return;
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.5; // スクロール速度
+      const walk = (x - startX) * 2; // スクロール速度
       slider.scrollLeft = scrollLeft - walk;
     });
   }
