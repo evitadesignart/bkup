@@ -218,6 +218,7 @@
     renderMatch();
     renderHints();
     document.getElementById('shuffle-hints').disabled = false;
+    document.getElementById('hints-container').style.display = 'block';
     document.getElementById('idea-panel').style.display = 'block';
   });
 
@@ -246,15 +247,26 @@
       return;
     }
     el.innerHTML = ideas.map(i => `
-      <div class="idea-entry">
-        <div class="idea-text">${escapeHtml(i.text)}</div>
-        <div class="idea-source">出発点：「${escapeHtml(i.a_domain)}」${escapeHtml(i.a_text)} × 「${escapeHtml(i.b_domain)}」${escapeHtml(i.b_text)}</div>
+      <div class="idea-entry" style="position:relative;">
+        <div class="idea-text">${escapeHtml(i.text).replace(/\n/g, '<br>')}</div>
+        <div class="idea-source">タネ: 「${escapeHtml(i.a_text)}」 × 「${escapeHtml(i.b_text)}」</div>
         <div class="idea-meta">
           <span>${new Date(i.created_at).toLocaleDateString('ja-JP')}</span>
         </div>
+        <button onclick="appDeleteIdea('${i.id}')" style="position:absolute; top:15px; right:15px; background:none; border:none; color:#e74c3c; cursor:pointer; font-size:16px;" title="削除"><i class="fa-solid fa-trash"></i></button>
       </div>
     `).join('');
   }
+
+  window.appDeleteIdea = async function(id) {
+    if(!confirm('この企画を削除しますか？')) return;
+    try {
+      await api('./api/ideas.php', { method: 'DELETE', body: JSON.stringify({ id }) });
+      await loadIdeas();
+    } catch(e) {
+      alert('削除に失敗しました: ' + e.message);
+    }
+  };
 
   document.getElementById('save-idea').addEventListener('click', async () => {
     const text = document.getElementById('idea-input').value.trim();
