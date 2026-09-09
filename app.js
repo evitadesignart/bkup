@@ -405,7 +405,6 @@
     }
   }
 
-  // ---------- Init ----------
   document.addEventListener('DOMContentLoaded', () => {
     initCarouselDrag();
     initPageTop();
@@ -416,4 +415,46 @@
   });
   loadCards();
   loadBackgrounds();
+
+  // ---------- PWA Installation ----------
+  let deferredPrompt;
+  const installBtn = document.getElementById('install-app-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent default prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    // Update UI to notify the user they can install the PWA
+    if(installBtn) {
+      installBtn.style.display = 'inline-block';
+    }
+  });
+
+  if(installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if(deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if(outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      }
+    });
+  }
+
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').then((registration) => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, (err) => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
 })();

@@ -7,6 +7,41 @@
   <title>キカクノタネ | 1日5分、違和感から始める発想トレーニング</title>
   <meta name="description"
     content="AIに代替されにくい能力を育成する企画力養成ツール。日々の「違和感」をネタ帳感覚で書き留め、ランダムに掛け合わせることで、1日5分でカンタンに発想トレーニングができます。">
+  
+  <!-- SEO & AIO / OGP & Twitter Cards -->
+  <link rel="canonical" href="https://evitadesignart.com/tane/">
+  <meta property="og:title" content="キカクノタネ | 1日5分、違和感から始める発想トレーニング">
+  <meta property="og:description" content="AIに代替されにくい能力を育成する企画力養成ツール。日々の「違和感」をネタ帳感覚で書き留めて掛け合わせる発想ノート。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://evitadesignart.com/tane/">
+  <meta property="og:image" content="https://evitadesignart.com/tane/ogp.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="キカクノタネ">
+  <meta name="twitter:description" content="1日5分でカンタンに発想トレーニングができる企画力養成ツール。">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#2c3e50">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "キカクノタネ",
+    "url": "https://evitadesignart.com/tane/",
+    "description": "AIに代替されにくい能力を育成する企画力養成ツール。日々の「違和感」をネタ帳感覚で書き留め、ランダムに掛け合わせることで、1日5分でカンタンに発想トレーニングができます。",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -47,6 +82,7 @@
         <div class="nav-links">
           <a href="#step1">書く</a>
           <a href="#step2">掛ける</a>
+          <button id="install-app-btn" class="btn-install" style="display: none; background: transparent; border: 1px solid #fff; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 13px; cursor: pointer; transition: 0.3s;"><i class="fa-solid fa-download"></i> 保存</button>
         </div>
         <div class="auth-box" id="auth-box">
           <div id="g_id_signin"></div>
@@ -75,7 +111,7 @@
         <div class="step-header">
           <h2>STEP 1: <br class="block md:hidden"> 違和感を書き留める</h2>
         </div>
-        <p class="step-desc">※ジャンル問わず、今日見かけた「なぜ？」「使いづらい」を自由にメモしてください。</p>
+        <p class="step-desc">※ジャンル問わず、今日見かけた「なぜ？」「使いづらい」「困った」「気になる」を自由にメモしてください。</p>
 
         <div class="input-card">
           <label for="text-input" class="card-label">気になったこと・引っかかったこと</label>
@@ -113,7 +149,7 @@
         </div>
 
         <div id="match-area"></div>
-        
+
         <div id="hints-container" style="text-align: center; margin-bottom: 30px; display: none;">
           <div class="hints" id="hints-area"></div>
           <button class="btn btn-shuffle" id="shuffle-hints"><i class="fa-solid fa-rotate-right"></i> 別の考え方を引く</button>
@@ -151,7 +187,7 @@
     <!-- Hint Board (Below Notebook) -->
     <aside class="hint-board">
       <h3 class="hint-title"><i class="fa-solid fa-lightbulb"></i> 企画の作り方</h3>
-      <p class="hint-desc">引いた2つのタネをどう企画にするか？横にスワイプして考え方を変えてみましょう。</p>
+      <p class="hint-desc">引いた2つのタネをどう企画にするか？</p>
 
       <div class="hint-carousel">
         <!-- 1. 強制発想法 -->
