@@ -302,9 +302,17 @@
   async function loadBackgrounds(){
     let images = [];
     try {
-      images = await api('./api/backgrounds.php');
+      const res = await api('./api/backgrounds.php');
+      // backgrounds.phpが {success: true, images: [...]} のような詳細データを返すように変更した場合の対応
+      if(res && res.success && res.images){
+        images = res.images;
+      } else if (Array.isArray(res)) {
+        images = res;
+      } else {
+        console.error('Backgrounds API Error:', res.error || 'Unknown format', 'Checked Path:', res.checked_paths);
+      }
     } catch(e) {
-      console.error('Backgrounds load failed', e);
+      console.error('Backgrounds load failed. ネットワークエラーかファイルが存在しません。', e);
     }
 
     const container = document.getElementById('bg-container');
@@ -332,10 +340,42 @@
     }
   }
 
+  // ---------- Carousel Mouse Drag ----------
+  function initCarouselDrag(){
+    const slider = document.querySelector('.hint-carousel');
+    if(!slider) return;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.style.cursor = 'grabbing';
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.style.cursor = 'auto';
+    });
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.style.cursor = 'auto';
+    });
+    slider.addEventListener('mousemove', (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.5; // スクロール速度
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  }
+
   // ---------- Init ----------
   window.addEventListener('load', () => {
     // Google script loads async; give it a brief moment, then init auth regardless
     setTimeout(initAuth, 300);
+    initCarouselDrag();
   });
   loadCards();
   loadBackgrounds();
