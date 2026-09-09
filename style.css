@@ -106,14 +106,22 @@ p.subtitle { margin: 4px 0 0; font-size: 11px; opacity: 0.8; font-weight: 500; }
 
 /* Steps */
 .step-section { 
-  position: relative; margin-bottom: 40px; 
-  background: #f8fafc; /* 段落を明確にする背景色 */
-  border: 1px solid #e2e8f0;
-  padding: 30px;
-  border-radius: 12px;
+  position: relative; margin-bottom: 50px; 
 }
 
-.step-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.step-header { 
+  display: inline-block;
+  background: #2c3e50; 
+  padding: 8px 16px; 
+  border-radius: 6px; 
+  margin-bottom: 16px; 
+}
+.step-header h2 { 
+  font-family: 'Zen Maru Gothic', sans-serif; 
+  font-size: 18px; 
+  margin: 0; 
+  color: #fff; 
+}
 .step-num {
   display: flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; background: var(--text-main); color: #fff;
@@ -295,5 +303,5 @@ details summary::marker { content: ''; }
 .page-top-btn:hover { opacity: 1; transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
 @media (max-width: 600px) {
   .page-top-btn { bottom: 16px; right: 12px; width: 44px; height: 44px; font-size: 18px; }
-  #g_id_signin { transform: scale(0.6); transform-origin: top center; } /* スマホで強制的に60%に縮小してはみ出し防止 */
+  #g_id_signin { transform: scale(0.6); transform-origin: center top; } /* スマホで強制的に60%に縮小してはみ出し防止 */
 }
