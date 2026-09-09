@@ -300,31 +300,35 @@
 
   // ---------- Backgrounds ----------
   async function loadBackgrounds(){
+    let images = [];
     try {
-      const images = await api('./api/backgrounds.php');
-      const container = document.getElementById('bg-container');
-      if(images && images.length > 0) {
-        container.innerHTML = ''; // 既存のHTMLをクリア
-        images.forEach((src, i) => {
-          const div = document.createElement('div');
-          div.className = 'bg-image' + (i === 0 ? ' active' : '');
-          div.style.backgroundImage = `url('${src}')`;
-          container.appendChild(div);
-        });
-
-        // 背景切り替えのアニメーション開始
-        if(images.length > 1) {
-          const bgs = document.querySelectorAll('.bg-image');
-          let currentBg = 0;
-          setInterval(() => {
-            bgs[currentBg].classList.remove('active');
-            currentBg = (currentBg + 1) % bgs.length;
-            bgs[currentBg].classList.add('active');
-          }, 12000);
-        }
-      }
+      images = await api('./api/backgrounds.php');
     } catch(e) {
       console.error('Backgrounds load failed', e);
+    }
+
+    const container = document.getElementById('bg-container');
+    
+    // APIから画像が取得できた場合のみ、HTMLを上書きする
+    if(images && images.length > 0) {
+      container.innerHTML = ''; // デフォルトをクリア
+      images.forEach((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'bg-image' + (i === 0 ? ' active' : '');
+        div.style.backgroundImage = `url('${src}')`;
+        container.appendChild(div);
+      });
+    }
+
+    // 背景切り替えのアニメーション開始（API取得画像、またはデフォルト画像のどちらでも動作）
+    const bgs = document.querySelectorAll('.bg-image');
+    if(bgs.length > 1) {
+      let currentBg = 0;
+      setInterval(() => {
+        bgs[currentBg].classList.remove('active');
+        currentBg = (currentBg + 1) % bgs.length;
+        bgs[currentBg].classList.add('active');
+      }, 12000);
     }
   }
 

@@ -36,8 +36,10 @@ html, body {
   transform: scale(1.05);
   opacity: 0;
   transition: opacity 3s ease-in-out;
-}
 .bg-image.active { opacity: 1; }
+
+.bg-cafe { background-image: url('assets/bg_cafe.jpg?v=2'); }
+.bg-crowd { background-image: url('assets/bg_crowd.jpg?v=2'); }
 
 .wrap { max-width: 800px; margin: 0 auto; padding: 30px 20px 80px; position: relative; z-index: 1; }
 
@@ -176,10 +178,18 @@ button { font-family: inherit; cursor: pointer; }
 .hint-title { font-family: 'Zen Maru Gothic', sans-serif; font-size: 20px; color: var(--accent-primary); margin: 0 0 10px; }
 .hint-desc { font-size: 14.5px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
 
+.hint-carousel {
+  display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
+}
+.hint-carousel::-webkit-scrollbar { height: 8px; }
+.hint-carousel::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
 .hint-card {
   background: #fff; border: 1px solid #ddd; border-left: 5px solid var(--accent-primary);
-  border-radius: 6px; padding: 20px; margin-bottom: 16px;
+  border-radius: 6px; padding: 20px; margin-bottom: 0;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+  min-width: 85%; scroll-snap-align: center; flex-shrink: 0;
 }
 .hint-card-title { font-weight: 700; font-size: 15px; margin-bottom: 16px; color: var(--text-main); text-align: center; background: #f9f9f9; padding: 8px; border-radius: 4px; }
 .hint-diagram { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }

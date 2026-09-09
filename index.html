@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=202609091435">
+  <link rel="stylesheet" href="./style.css?v=202609091443">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <!-- ========================================
@@ -25,8 +25,11 @@
 </head>
 
 <body>
-  <!-- Dynamic Environment Backgrounds (Loaded automatically by JS) -->
-  <div class="bg-fx" id="bg-container"></div>
+  <!-- Dynamic Environment Backgrounds (Fallback defaults) -->
+  <div class="bg-fx" id="bg-container">
+    <div class="bg-image bg-cafe active"></div>
+    <div class="bg-image bg-crowd"></div>
+  </div>
 
   <div class="wrap">
     
@@ -123,23 +126,43 @@
 
     <!-- Hint Board (Below Notebook) -->
     <aside class="hint-board">
-      <h3 class="hint-title">💡 企画の作り方（強制発想法）</h3>
-      <p class="hint-desc">引いた2つのタネをどう企画にするか？<br><strong>「Aの特徴を、Bの世界にムリヤリ持ち込む」</strong>と考えてみましょう。</p>
+      <h3 class="hint-title">💡 企画の作り方（スワイプで3つの考え方）</h3>
+      <p class="hint-desc">引いた2つのタネをどう企画にするか？横にスワイプして考え方を変えてみましょう。</p>
 
-      <div class="hint-card">
-        <div class="hint-card-title">思考の例</div>
-        <div class="hint-diagram">
-          <div class="seed-row">
-            <span class="seed">満員電車</span> × <span class="seed">カフェ</span>
+      <div class="hint-carousel">
+        <!-- 1. 強制発想法 -->
+        <div class="hint-card">
+          <div class="hint-card-title">① 特徴を持ち込む（強制発想）</div>
+          <div class="hint-diagram">
+            <div class="seed-row"><span class="seed">満員電車</span> × <span class="seed">カフェ</span></div>
+            <div class="arrow">↓</div>
+            <div class="idea-step"><strong>カフェの特徴（座れる、コーヒー）</strong>を満員電車にムリヤリ持ち込む</div>
+            <div class="arrow">↓</div>
+            <div class="idea-result">👉 座席予約できる通勤ライナー<br>👉 サブスクでコーヒーが配られる電車</div>
           </div>
-          <div class="arrow">↓</div>
-          <div class="idea-step">
-            <strong>カフェの特徴（座れる、コーヒー、予約できる）</strong>を<br>満員電車に持ち込んだらどうなる？
+        </div>
+
+        <!-- 2. 役割の逆転 -->
+        <div class="hint-card">
+          <div class="hint-card-title">② 目的を逆転する</div>
+          <div class="hint-diagram">
+            <div class="seed-row"><span class="seed">歩く</span> × <span class="seed">スマホゲーム</span></div>
+            <div class="arrow">↓</div>
+            <div class="idea-step">「歩くための手段」ではなく、「歩くこと自体をゲームの目的」にする</div>
+            <div class="arrow">↓</div>
+            <div class="idea-result">👉 距離でモンスターが育つ位置情報ゲーム<br>👉 歩数が通貨になるお小遣いアプリ</div>
           </div>
-          <div class="arrow">↓</div>
-          <div class="idea-result">
-            👉 座席を事前予約できる「カフェ車両」を導入する<br>
-            👉 満員電車の中で、サブスクでコーヒーが受け取れるサービス
+        </div>
+
+        <!-- 3. 当たり前の移植（アナロジー） -->
+        <div class="hint-card">
+          <div class="hint-card-title">③ 当たり前を移植する（アナロジー）</div>
+          <div class="hint-diagram">
+            <div class="seed-row"><span class="seed">スーパーのレジ</span> × <span class="seed">美容室</span></div>
+            <div class="arrow">↓</div>
+            <div class="idea-step">美容室の当たり前（担当者の指名・予約制）をレジに移植する</div>
+            <div class="arrow">↓</div>
+            <div class="idea-result">👉 好きな店員を指名できる「指名制レジ」<br>👉 レジに並ばない「時間予約レジ」</div>
           </div>
         </div>
       </div>
