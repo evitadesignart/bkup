@@ -127,8 +127,7 @@ p.subtitle { margin: 4px 0 0; font-size: 11px; opacity: 0.8; font-weight: 500; }
   width: 32px; height: 32px; background: var(--text-main); color: #fff;
   border-radius: 50%; font-family: 'Zen Maru Gothic', sans-serif; font-size: 15px; font-weight: 700;
 }
-.step-header h2 { font-family: 'Zen Maru Gothic', sans-serif; font-size: 20px; margin: 0; color: var(--text-main); }
-.step-desc { font-size: 13.5px; color: var(--text-muted); margin: 0 0 24px 44px; line-height: 1.6; }
+.step-desc { font-size: 13.5px; color: var(--text-muted); margin: 0 0 24px 0; line-height: 1.6; }
 
 .notebook-divider { border: 0; height: 1px; background: rgba(0,0,0,0.06); margin: 50px 0; }
 
