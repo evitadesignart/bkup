@@ -1,15 +1,11 @@
 (function(){
   const HINT_TEMPLATES = [
-    (a,b) => `「${a}」×「${b}」の手法＝？`,
-    (a,b) => `「${a}」×「${b}」のルール＝？`,
-    (a,b) => `「${a}」×「${b}」の解決策＝？`,
-    (a,b) => `「${a}」×「${b}」の同時発生＝？`,
-    (a,b) => `「${a}」好きが「${b}」に出会うと？`,
-    (a,b) => `「${a}」の未来を「${b}」で変えると？`,
-    (a,b) => `「${a}」へ「${b}」を移植すると？`,
-    (a,b) => `「${b}」の常識で「${a}」を疑うと？`,
-    (a,b) => `「${a}」を「${b}」で解決すると？`,
-    (a,b) => `「${b}」を「${a}」に当てはめると？`,
+    (a,b) => `「${b}」の強みを活かして「${a}」を解決する新しいサービスは？`,
+    (a,b) => `「${b}」の業界で当たり前なことを「${a}」に持ち込むとどうなる？`,
+    (a,b) => `「${a}」の弱点を「${b}」の仕組みでカバーする商品を考えるなら？`,
+    (a,b) => `「${a}」と「${b}」が合体した、誰も見たことがない店舗を作るとしたら？`,
+    (a,b) => `「${b}」のルールで「${a}」を楽しむエンタメ企画を作るなら？`,
+    (a,b) => `「${a}」で困っている人を「${b}」の技術で助けるアプリは？`,
   ];
 
   let cards = [];
@@ -115,7 +111,7 @@
       if(promptArea) promptArea.style.display = 'none';
       if(workspaceArea) workspaceArea.style.display = 'block';
     }else{
-      if(box) box.innerHTML = `<span style="font-size:12px; color:rgba(255,255,255,0.7);">未ログイン</span>`;
+      if(box) box.innerHTML = ``; // 未ログイン時は何も表示しない
       if(promptArea) promptArea.style.display = 'block';
       if(workspaceArea) workspaceArea.style.display = 'none';
       renderSignInButton();
