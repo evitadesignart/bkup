@@ -44,8 +44,11 @@
       </div>
     </header>
 
-    <!-- Main Notebook Container -->
-    <main class="notebook">
+    <!-- Main Layout Container (Notebook + Hint Board) -->
+    <div class="main-layout">
+      
+      <!-- Main Notebook Container -->
+      <main class="notebook">
       <div class="notebook-rings">
         <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
         <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
@@ -92,14 +95,6 @@
         </div>
         <p class="step-desc">※書き溜めた違和感をランダムに2つ選び、新しいアイデアのヒントを生み出します。</p>
         
-        <div class="frameworks-box">
-          <div class="frameworks-title">ひらめきフレームワーク</div>
-          <ul class="frameworks-list">
-            <li><strong>SCAMPER法：</strong> 代用できないか？逆にしたら？大げさにしたら？</li>
-            <li><strong>5W1Hのずらし：</strong> 「誰が」「いつ」「どこで」使うかを極端にずらす。</li>
-            <li><strong>アナロジー：</strong> 全く別の業界の「当たり前の仕組み」を真似る。</li>
-          </ul>
-        </div>
         
         <div class="draw-area">
           <button class="btn btn-draw" id="draw-match">
@@ -135,6 +130,41 @@
       </section>
 
     </main>
+
+    <!-- Hint Board (Outside Notebook) -->
+    <aside class="hint-board">
+      <h3 class="hint-title">💡 ひらめきヒントボード</h3>
+      <p class="hint-desc">引いた2つのタネをどう繋ぐか？具体的な考え方の例です。</p>
+
+      <div class="hint-card">
+        <div class="hint-card-title">① 役割をずらす（SCAMPER法）</div>
+        <div class="hint-diagram">
+          <span class="seed">バスのボタン</span> × <span class="seed">カフェ</span>
+          <div class="arrow">↓</div>
+          <div class="idea-result">カフェの席に「お冷おかわり」を呼ぶバスのボタンを設置する</div>
+        </div>
+      </div>
+
+      <div class="hint-card">
+        <div class="hint-card-title">② 状況を逆転する（5W1H）</div>
+        <div class="hint-diagram">
+          <span class="seed">満員電車</span> × <span class="seed">スマホゲーム</span>
+          <div class="arrow">↓</div>
+          <div class="idea-result">満員電車のように「人が密集している場所」でしかプレイできない位置情報ゲーム</div>
+        </div>
+      </div>
+
+      <div class="hint-card">
+        <div class="hint-card-title">③ 当たり前を輸入する（アナロジー）</div>
+        <div class="hint-diagram">
+          <span class="seed">美容室の予約</span> × <span class="seed">スーパーのレジ</span>
+          <div class="arrow">↓</div>
+          <div class="idea-result">スーパーのレジも美容室のように「指名・事前予約制」にする</div>
+        </div>
+      </div>
+    </aside>
+
+    </div><!-- /.main-layout -->
 
     <footer class="footer">
       <p>書き留めた違和感の単語帳は、このページを開いた全員で共有されます。</p>
