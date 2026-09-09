@@ -7,7 +7,7 @@ $ADMIN_PASSWORD = 'tane';
 
 if (isset($_GET['logout'])) {
     session_destroy();
-    header('Location: admin.php');
+    header('Location: https://evitadesignart.com/tane/');
     exit;
 }
 
