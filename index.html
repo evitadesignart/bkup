@@ -8,7 +8,7 @@
   <meta name="description" content="AIに代替されにくい能力を育成する企画力養成ツール。日々の「違和感」をネタ帳感覚で書き留め、ランダムに掛け合わせることで、1日5分でカンタンに発想トレーニングができます。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -22,126 +22,112 @@
     gtag('js', new Date());
     gtag('config', 'G-CX0Q57RVS9');
   </script>
-
-  <!-- ========================================
-       Microsoft Clarity
-  ========================================= -->
-  <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "xpag8axifh");
-  </script>
 </head>
 
 <body>
-  <!-- Dynamic Real World Background -->
-  <div class="bg-fx">
-    <div class="bg-image bg-cafe"></div>
+  <!-- Dynamic Environment Backgrounds -->
+  <div class="bg-fx" id="bg-container">
+    <div class="bg-image bg-cafe active"></div>
+    <div class="bg-image bg-crowd"></div>
   </div>
 
   <div class="wrap">
-    <header class="top glass-panel-header">
-      <h1 class="title">キカクノタネ</h1>
-      <p class="subtitle">
-        <strong>日常の風景からインスピレーションを得て、「発想力」を鍛える。</strong><br>
-        思いついた日常の些細な「違和感」を書き留め、全く違うものと結びつけることで、新しい企画の種を生み出しましょう。
-      </p>
-
+    
+    <!-- Title Area -->
+    <header class="top-header">
+      <div class="title-box">
+        <h1 class="title">キカクノタネ</h1>
+        <p class="subtitle">日常の違和感をストックし、掛け合わせてアイデアを生み出す発想ノート</p>
+      </div>
       <div class="auth-box" id="auth-box">
         <div id="g_id_signin"></div>
       </div>
     </header>
 
-    <div class="grid">
-      <!-- STEP 1: submission -->
-      <div class="step-column">
-        <div class="step-badge">STEP 1</div>
-        <section class="panel glass-panel">
-          <h2 class="panel-title">まずは日常の違和感を書き留める</h2>
-
-          <div class="examples-box">
-            <div class="examples-title">こんなことでOK</div>
-            <ul class="examples-list">
-              <li>バングラデシュ人が日本企業に馴染むためのコーチングサービス</li>
-              <li>バスの停車ボタンのデザインが何十年も変わっていない</li>
-              <li>厚労省の個人輸入システムがわかりづらい</li>
-            </ul>
-            <div class="examples-note">ジャンルは気にしなくてOK。カフェや街中でのちょっとした気づきをそのまま書き留めましょう。</div>
-          </div>
-
-          <label class="field-label" for="text-input">気になったこと・引っかかったこと</label>
+    <!-- Main Notebook Container -->
+    <main class="notebook">
+      <div class="notebook-rings">
+        <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      </div>
+      
+      <!-- STEP 1 -->
+      <section class="step-section">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <h2>日常の違和感を書き留める</h2>
+        </div>
+        <p class="step-desc">※ジャンル問わず、今日見かけた「なぜ？」「使いづらい」を自由にメモしてください。</p>
+        
+        <div class="input-card">
+          <label for="text-input" class="card-label">気になったこと・引っかかったこと</label>
           <textarea id="text-input" rows="3" placeholder="例）バスの停車ボタンのデザインが何十年も変わっていない"></textarea>
 
-          <label class="field-label" for="domain-input">領域タグ（地域・業界・分野など）</label>
+          <label for="domain-input" class="card-label">領域タグ（地域・業界・分野など）</label>
           <input type="text" id="domain-input" placeholder="例）公共交通 / インフラ">
 
-          <div class="toolbar">
-            <button class="btn primary-btn" id="submit-card">書き留める</button>
+          <div class="action-row">
+            <button class="btn btn-write" id="submit-card">ノートに書き込む</button>
+            <span class="status-line" id="submit-status"></span>
           </div>
-          <div class="status-line" id="submit-status"></div>
-        </section>
+        </div>
 
-        <section class="panel glass-panel-soft">
-          <h2 class="panel-title-small">集まった違和感</h2>
-          <div class="card-list" id="card-list">
-            <div class="empty-note">読み込み中…</div>
-          </div>
-        </section>
-      </div>
+        <div class="recent-list-toggle">
+          <details>
+            <summary>みんなが書き留めたタネを見る</summary>
+            <div class="card-list" id="card-list">
+              <div class="empty-note">読み込み中…</div>
+            </div>
+          </details>
+        </div>
+      </section>
 
-      <!-- STEP 2: matching + ideas -->
-      <div class="step-column">
-        <div class="step-badge step-2-badge">STEP 2</div>
-        <section class="panel glass-panel">
-          <h2 class="panel-title">集まったタネを掛け合わせる</h2>
-          <div class="toolbar">
-            <button class="btn action-btn-large" id="draw-match">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-              違和感を2つ引く
-            </button>
-            <button class="btn secondary" id="shuffle-hints" disabled>別の問いにする</button>
-          </div>
+      <hr class="notebook-divider">
+
+      <!-- STEP 2 -->
+      <section class="step-section">
+        <div class="step-header">
+          <span class="step-num">2</span>
+          <h2>タネを掛け合わせて企画にする</h2>
+        </div>
+        <p class="step-desc">※書き溜めた違和感をランダムに2つ選び、新しいアイデアのヒントを生み出します。</p>
+        
+        <div class="draw-area">
+          <button class="btn btn-draw" id="draw-match">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            違和感を2つ引く
+          </button>
+          <button class="btn btn-shuffle" id="shuffle-hints" disabled>別の問いにする</button>
           <div class="status-line" id="match-status"></div>
+        </div>
 
-          <div id="match-area"></div>
-          <div class="hints" id="hints-area"></div>
-        </section>
+        <div id="match-area"></div>
+        <div class="hints" id="hints-area"></div>
 
-        <section class="panel glass-panel" id="idea-panel" style="display:none;">
-          <h2 class="panel-title">浮かんだ企画をメモする</h2>
-          
-          <div class="frameworks-box">
-            <div class="frameworks-title">💡 ひらめきフレームワーク</div>
-            <ul class="frameworks-list">
-              <li><strong>SCAMPER法：</strong> 代用できないか？逆にしたら？大げさにしたら？</li>
-              <li><strong>5W1Hのずらし：</strong> 「誰が」「いつ」「どこで」使うかを極端にずらす。</li>
-              <li><strong>アナロジー：</strong> 全く別の業界の「当たり前の仕組み」を真似る。</li>
-            </ul>
-          </div>
-
+        <div id="idea-panel" style="display:none;" class="idea-panel">
+          <h3>💡 ひらめきメモ</h3>
           <textarea id="idea-input" rows="3" placeholder="問いに答える形で、思いついたことを書いてみる"></textarea>
-          <div class="toolbar">
-            <button class="btn primary-btn" id="save-idea">企画として残す</button>
+          <div class="action-row">
+            <button class="btn btn-save" id="save-idea">企画として残す</button>
+            <span class="status-line" id="idea-status"></span>
           </div>
-          <div class="status-line" id="idea-status"></div>
-        </section>
+        </div>
 
-        <section class="panel glass-panel-soft">
-          <h2 class="panel-title-small">企画ログ（自分だけに表示）</h2>
-          <div id="idea-log-gate" class="empty-note">
-            企画ログを保存・閲覧するにはGoogleでログインしてください。
-          </div>
-          <div class="idea-log" id="idea-log" style="display:none;"></div>
-        </section>
-      </div>
-    </div>
+        <div class="recent-list-toggle">
+          <details>
+            <summary>自分の企画ログを見る（要ログイン）</summary>
+            <div id="idea-log-gate" class="empty-note" style="margin-top:10px;">
+              企画ログを保存・閲覧するにはGoogleでログインしてください。
+            </div>
+            <div class="idea-log" id="idea-log" style="display:none; margin-top:10px;"></div>
+          </details>
+        </div>
+      </section>
 
-    <footer class="footer glass-panel-soft">
-      <p>
-        書き留めた違和感の単語帳は、このページを開いた全員で共有されます。誰でも自由に書き留めたり、掛け合わせに使ったりできます。企画ログはGoogleアカウントごとに保存され、他の人からは見えません。
-      </p>
+    </main>
+
+    <footer class="footer">
+      <p>書き留めた違和感の単語帳は、このページを開いた全員で共有されます。</p>
       <div class="footer-links">
         <a href="./api/admin.php" class="admin-link">管理者ページ</a>
       </div>
@@ -149,6 +135,18 @@
   </div>
 
   <script src="./app.js"></script>
+  <script>
+    // 背景の時間遷移スクリプト (12秒ごとに切り替え)
+    const bgs = document.querySelectorAll('.bg-image');
+    let currentBg = 0;
+    if(bgs.length > 1) {
+      setInterval(() => {
+        bgs[currentBg].classList.remove('active');
+        currentBg = (currentBg + 1) % bgs.length;
+        bgs[currentBg].classList.add('active');
+      }, 12000);
+    }
+  </script>
 </body>
 
 </html>
