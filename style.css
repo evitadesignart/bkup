@@ -60,9 +60,10 @@ p.subtitle { margin: 0; font-size: 13.5px; opacity: 0.95; font-weight: 500; }
 .logout-link { color: #fff; text-decoration: underline; cursor: pointer; font-size: 11px; margin-left: 8px; opacity: 0.9; }
 .logout-link:hover { opacity: 1; }
 
-/* Premium Notebook Style */
+/* Premium Notebook Style (Ruled Paper Texture) */
 .notebook {
-  background: var(--paper-bg);
+  background-color: var(--paper-bg);
+  background-image: repeating-linear-gradient(transparent, transparent 31px, #e8eaed 31px, #e8eaed 32px);
   border-radius: 4px 16px 16px 4px;
   border-left: 18px solid #2c3e50; /* Elegant cloth binding spine */
   box-shadow: 0 15px 40px rgba(0,0,0,0.15), inset 12px 0 20px rgba(0,0,0,0.03);
@@ -188,19 +189,34 @@ button { font-family: inherit; cursor: pointer; }
 .hint-carousel::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
 
 .hint-card {
-  background: #fdfcf9; border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 8px; padding: 24px; margin-bottom: 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  background-color: #fff;
+  background-image: 
+    linear-gradient(#f1f5f9 1px, transparent 1px),
+    linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
+  background-size: 15px 15px; /* 方眼紙の目盛り */
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px; margin-bottom: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   min-width: 85%; scroll-snap-align: center; flex-shrink: 0;
   transition: transform 0.2s ease;
+  overflow: hidden; /* 角丸からはみ出ないように */
+  display: flex; flex-direction: column;
 }
-.hint-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
-.hint-card-title { font-weight: 700; font-size: 14.5px; margin-bottom: 20px; color: var(--text-main); text-align: center; }
+.hint-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+
+.hint-card-title { 
+  background: #1a252f; /* 上一段ネイビー背景 */
+  color: #fff; /* 白文字 */
+  font-weight: 700; font-size: 15px; 
+  padding: 16px; margin: 0;
+  text-align: center; 
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
 .card-author { font-size: 11px; color: #95a5a6; font-weight: normal; display: block; margin-top: 4px; }
 
-.hint-diagram { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.hint-diagram { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 24px; }
 .hint-diagram .seed-row { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
-.hint-diagram .seed { background: #fff; border: 1px solid #ecf0f1; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; color: #34495e; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+.hint-diagram .seed { background: #fff; border: 1px solid #bdc3c7; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; color: #2c3e50; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 .hint-diagram .arrow { color: #bdc3c7; font-size: 16px; }
 .hint-diagram .idea-step { background: #f8f9f9; padding: 14px; border-radius: 8px; font-size: 13.5px; line-height: 1.6; width: 100%; color: #7f8c8d; border: 1px solid #f2f4f4; }
 .hint-diagram .idea-result { background: #fff; color: var(--text-main); padding: 16px; border-radius: 8px; font-size: 14px; font-weight: 700; width: 100%; line-height: 1.6; border: 1px solid #ecf0f1; text-align: left; box-shadow: 0 1px 4px rgba(0,0,0,0.02); }
