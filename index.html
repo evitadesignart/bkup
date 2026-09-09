@@ -33,21 +33,27 @@
     <div class="bg-image bg-crowd"></div>
   </div>
 
-  <div class="wrap">
-    
-    <!-- Title Area -->
-    <header class="top-header">
+  <!-- Global Header -->
+  <header class="global-header">
+    <div class="header-inner">
       <div class="title-box">
         <h1 class="title">キカクノタネ</h1>
         <p class="subtitle">日常の違和感をストックし、掛け合わせてアイデアを生み出す発想ノート</p>
       </div>
-      <div class="auth-box" id="auth-box">
-        <div id="g_id_signin"></div>
-      </div>
-    </header>
+      <nav class="header-nav">
+        <a href="#step1"><i class="fa-solid fa-pen-nib"></i> 書く</a>
+        <a href="#step2"><i class="fa-solid fa-bolt"></i> 掛ける</a>
+        <div class="auth-box" id="auth-box">
+          <div id="g_id_signin"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
 
     <!-- Main Notebook Container -->
-    <main class="notebook">
+    <main class="notebook" id="step1">
       <div class="notebook-rings">
         <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
         <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
@@ -83,8 +89,8 @@
 
       <hr class="notebook-divider">
 
-      <!-- STEP 2 -->
-      <section class="step-section">
+      <!-- STEP 2: 掛け合わせる -->
+      <section class="step-section" id="step2">
         <div class="step-header">
           <span class="step-num">2</span>
           <h2><i class="fa-solid fa-bolt"></i> 違和感を掛け合わせる</h2>
@@ -167,13 +173,20 @@
       </div>
     </aside>
 
-    <footer class="footer">
+    <!-- Back to Top Button -->
+    <button id="page-top" class="page-top-btn"><i class="fa-solid fa-chevron-up"></i></button>
+  </div>
+
+  <footer class="global-footer">
+    <div class="footer-inner">
       <p>書き留めた違和感の単語帳は、このページを開いた全員で共有されます。</p>
       <div class="footer-links">
+        <a href="https://evitadesignart.com/" target="_blank" class="copyright-link">&copy; Evita Design Art</a>
+        <span class="footer-sep">|</span>
         <a href="./api/admin.php" class="admin-link">管理者ページ</a>
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   <script src="./app.js?v=202609091522"></script>
 </body>

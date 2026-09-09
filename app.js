@@ -371,9 +371,33 @@
     });
   }
 
+  // ---------- Page Top Button ----------
+  function initPageTop(){
+    const btn = document.getElementById('page-top');
+    if(!btn) return;
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 300) {
+        btn.style.opacity = '0.9';
+        btn.style.pointerEvents = 'auto';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.pointerEvents = 'none';
+      }
+    });
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // 初期状態
+    if(window.scrollY <= 300) {
+      btn.style.opacity = '0';
+      btn.style.pointerEvents = 'none';
+    }
+  }
+
   // ---------- Init ----------
   document.addEventListener('DOMContentLoaded', () => {
     initCarouselDrag();
+    initPageTop();
   });
   window.addEventListener('load', () => {
     // Google script loads async; give it a brief moment, then init auth regardless
