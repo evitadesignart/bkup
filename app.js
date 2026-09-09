@@ -63,7 +63,10 @@
 
   function renderSignInButton(){
     const el = document.getElementById('g_id_signin');
-    if(el) google.accounts.id.renderButton(el, { theme: 'outline', size: 'medium', text: 'signin_with' });
+    if(el) {
+      const btnWidth = window.innerWidth < 400 ? 200 : 250;
+      google.accounts.id.renderButton(el, { theme: 'outline', size: 'large', text: 'signin_with', width: btnWidth });
+    }
   }
 
   async function handleCredentialResponse(response){
@@ -91,30 +94,31 @@
     if(currentUser) await loadIdeas();
   }
 
+  window.appLogout = async function(){
+    await api('./api/auth.php?action=logout', { method: 'POST' });
+    currentUser = null;
+    renderAuthBox();
+  }
+
   function renderAuthBox(){
     const box = document.getElementById('auth-box');
-    const gate = document.getElementById('idea-log-gate');
-    const log = document.getElementById('idea-log');
+    const promptArea = document.getElementById('login-prompt-area');
+    const workspaceArea = document.getElementById('idea-workspace');
 
     if(currentUser){
-      box.innerHTML = `
+      if(box) box.innerHTML = `
         <div class="user-chip">
-          <span>${escapeHtml(currentUser.name)} としてログイン中</span>
-          <span class="logout-link" id="logout-link">ログアウト</span>
+          <i class="fa-solid fa-user"></i> ${escapeHtml(currentUser.email)}
+          <a class="logout-link" onclick="appLogout()">ログアウト</a>
         </div>
       `;
-      document.getElementById('logout-link').addEventListener('click', async () => {
-        await api('./api/auth.php?action=logout', { method: 'POST' });
-        currentUser = null;
-        renderAuthBox();
-      });
-      gate.style.display = 'none';
-      log.style.display = 'flex';
+      if(promptArea) promptArea.style.display = 'none';
+      if(workspaceArea) workspaceArea.style.display = 'block';
     }else{
-      box.innerHTML = `<div id="g_id_signin"></div>`;
+      if(box) box.innerHTML = `<span style="font-size:12px; color:rgba(255,255,255,0.7);">未ログイン</span>`;
+      if(promptArea) promptArea.style.display = 'block';
+      if(workspaceArea) workspaceArea.style.display = 'none';
       renderSignInButton();
-      gate.style.display = 'block';
-      log.style.display = 'none';
     }
   }
 
@@ -205,8 +209,8 @@
     const el = document.getElementById('hints-area');
     if(!currentMatch){ el.innerHTML = ''; return; }
     const { a, b } = currentMatch;
-    const shuffled = [...HINT_TEMPLATES].sort(() => Math.random() - 0.5).slice(0, 3);
-    el.innerHTML = shuffled.map(fn => `<div class="hint-item">${escapeHtml(fn(a.text, b.text))}</div>`).join('');
+    const shuffled = [...HINT_TEMPLATES].sort(() => Math.random() - 0.5).slice(0, 1);
+    el.innerHTML = shuffled.map(fn => `<div class="hint-item" style="font-weight:700; color:var(--text-main); background: #fdfcf9; padding: 12px 16px; border-left: 4px solid var(--accent-secondary); border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">${escapeHtml(fn(a.text, b.text))}</div>`).join('');
   }
 
   document.getElementById('draw-match').addEventListener('click', () => {

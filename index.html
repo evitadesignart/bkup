@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
   <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="./style.css?v=202609091527">
+  <link rel="stylesheet" href="./style.css?v=202609091544">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <!-- ========================================
@@ -42,8 +42,8 @@
       </div>
       <nav class="header-nav">
         <div class="nav-links">
-          <a href="#step1"><i class="fa-solid fa-pen-nib"></i> 書く</a>
-          <a href="#step2"><i class="fa-solid fa-bolt"></i> 掛ける</a>
+          <a href="#step1">書く</a>
+          <a href="#step2">掛ける</a>
         </div>
         <div class="auth-box" id="auth-box">
           <div id="g_id_signin"></div>
@@ -61,11 +61,10 @@
         <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
       </div>
       
-      <!-- STEP 1 -->
-      <section class="step-section">
+      <!-- STEP 1: 書き留める -->
+      <section class="step-section" id="step1">
         <div class="step-header">
-          <span class="step-num">1</span>
-          <h2><i class="fa-solid fa-pen-nib"></i> 日常の違和感を書き留める</h2>
+          <h2>STEP 1: 違和感を書き留める</h2>
         </div>
         <p class="step-desc">※ジャンル問わず、今日見かけた「なぜ？」「使いづらい」を自由にメモしてください。</p>
         
@@ -94,8 +93,7 @@
       <!-- STEP 2: 掛け合わせる -->
       <section class="step-section" id="step2">
         <div class="step-header">
-          <span class="step-num">2</span>
-          <h2><i class="fa-solid fa-bolt"></i> 違和感を掛け合わせる</h2>
+          <h2>STEP 2: 違和感を掛け合わせる</h2>
         </div>
         <p class="step-desc">※書き溜めた違和感をランダムに2つ選び、新しいアイデアのヒントを生み出します。</p>
         
@@ -109,24 +107,29 @@
         <div id="match-area"></div>
         <div class="hints" id="hints-area"></div>
 
-        <div id="idea-panel" style="display:none;" class="idea-panel">
-          <h3>ひらめきメモ</h3>
+        <!-- Idea Panel -->
+        <div class="idea-panel" id="idea-panel">
+          <h3>自分の企画ログ</h3>
 
-          <textarea id="idea-input" rows="3" placeholder="（例）これらを組み合わせると..."></textarea>
-          <div class="action-row">
-            <button class="btn btn-save" id="save-idea">企画として残す</button>
-            <span class="status-line" id="idea-status"></span>
+          <!-- ログインプロンプト（未ログイン時） -->
+          <div id="login-prompt-area" style="text-align: center; padding: 20px 0;">
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">
+              Googleアカウントでログインすると、あなただけの企画一覧として保存・管理できます。
+            </p>
+            <div id="g_id_signin" style="display:inline-block; max-width:100%;"></div>
           </div>
-        </div>
 
-        <div class="recent-list-toggle">
-          <details>
-            <summary>自分の企画ログを見る（要ログイン）</summary>
-            <div id="idea-log-gate" class="empty-note" style="margin-top:10px;">
-              企画ログを保存・閲覧するにはGoogleでログインしてください。
+          <!-- 企画入力・履歴エリア（ログイン時） -->
+          <div id="idea-workspace" style="display:none;">
+            <textarea id="idea-input" rows="3" placeholder="掛け合わせから生まれた企画アイデア..."></textarea>
+            <div class="action-row">
+              <button id="save-idea" class="btn btn-save"><i class="fa-solid fa-cloud-arrow-up"></i> 企画を残す</button>
+              <span id="idea-status" class="status-line"></span>
             </div>
-            <div class="idea-log" id="idea-log" style="display:none; margin-top:10px;"></div>
-          </details>
+            
+            <hr class="notebook-divider" style="margin: 30px 0;">
+            <div id="idea-log"></div>
+          </div>
         </div>
       </section>
     </main>
@@ -190,7 +193,7 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=202609091530"></script>
+  <script src="./app.js?v=202609091544"></script>
 </body>
 
 </html>
