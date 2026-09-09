@@ -25,11 +25,8 @@
 </head>
 
 <body>
-  <!-- Dynamic Environment Backgrounds -->
-  <div class="bg-fx" id="bg-container">
-    <div class="bg-image bg-cafe active"></div>
-    <div class="bg-image bg-crowd"></div>
-  </div>
+  <!-- Dynamic Environment Backgrounds (Loaded automatically by JS) -->
+  <div class="bg-fx" id="bg-container"></div>
 
   <div class="wrap">
     
@@ -157,18 +154,6 @@
   </div>
 
   <script src="./app.js"></script>
-  <script>
-    // 背景の時間遷移スクリプト (12秒ごとに切り替え)
-    const bgs = document.querySelectorAll('.bg-image');
-    let currentBg = 0;
-    if(bgs.length > 1) {
-      setInterval(() => {
-        bgs[currentBg].classList.remove('active');
-        currentBg = (currentBg + 1) % bgs.length;
-        bgs[currentBg].classList.add('active');
-      }, 12000);
-    }
-  </script>
 </body>
 
 </html>

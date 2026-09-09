@@ -39,10 +39,6 @@ html, body {
 }
 .bg-image.active { opacity: 1; }
 
-.bg-cafe { background-image: url('assets/bg_cafe.jpg?v=2'); }
-.bg-crowd { background-image: url('assets/bg_crowd.jpg?v=2'); }
-/* Note: You can add bg_street, bg_sea, etc. here and cycle them in JS */
-
 .wrap { max-width: 800px; margin: 0 auto; padding: 30px 20px 80px; position: relative; z-index: 1; }
 
 /* Header */

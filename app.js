@@ -298,10 +298,41 @@
     }
   });
 
+  // ---------- Backgrounds ----------
+  async function loadBackgrounds(){
+    try {
+      const images = await api('./api/backgrounds.php');
+      const container = document.getElementById('bg-container');
+      if(images && images.length > 0) {
+        container.innerHTML = ''; // 既存のHTMLをクリア
+        images.forEach((src, i) => {
+          const div = document.createElement('div');
+          div.className = 'bg-image' + (i === 0 ? ' active' : '');
+          div.style.backgroundImage = `url('${src}')`;
+          container.appendChild(div);
+        });
+
+        // 背景切り替えのアニメーション開始
+        if(images.length > 1) {
+          const bgs = document.querySelectorAll('.bg-image');
+          let currentBg = 0;
+          setInterval(() => {
+            bgs[currentBg].classList.remove('active');
+            currentBg = (currentBg + 1) % bgs.length;
+            bgs[currentBg].classList.add('active');
+          }, 12000);
+        }
+      }
+    } catch(e) {
+      console.error('Backgrounds load failed', e);
+    }
+  }
+
   // ---------- Init ----------
   window.addEventListener('load', () => {
     // Google script loads async; give it a brief moment, then init auth regardless
     setTimeout(initAuth, 300);
   });
   loadCards();
+  loadBackgrounds();
 })();
