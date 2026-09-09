@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>違和感ノート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="top">
+      <div class="stamp-mark">みんなの企画のタネ帳</div>
+      <h1 class="title">違和感ノート</h1>
+      <p class="subtitle">気になったこと・引っかかったこと・困ったことを、ジャンルを気にせず単語帳のように書き留めて、ランダムに掛け合わせる。出てきた問いをヒントに、企画の種を探す場所です。</p>
+
+      <div class="auth-box" id="auth-box">
+        <div id="g_id_signin"></div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- LEFT: submission + card list -->
+      <div>
+        <section class="panel">
+          <h2 class="panel-title">タネ帳に書き留める</h2>
+
+          <div class="examples-box">
+            <div class="examples-title">こんなことでOK</div>
+            <ul class="examples-list">
+              <li>バングラデシュ人が日本企業に馴染むためのコーチングサービス</li>
+              <li>バスの停車ボタンのデザインが何十年も変わっていない</li>
+              <li>証明写真を撮ったあと、シャツの色をあとから変えられない</li>
+              <li>厚労省の個人輸入システムがわかりづらい</li>
+            </ul>
+            <div class="examples-note">ジャンルや分類は気にしなくてOK。気になったことをそのまま書けば大丈夫です。ログイン不要で誰でも投稿できます。</div>
+          </div>
+
+          <label class="field-label" for="text-input">気になったこと・引っかかったこと</label>
+          <textarea id="text-input" rows="3" placeholder="例）バスの停車ボタンのデザインが何十年も変わっていない"></textarea>
+
+          <label class="field-label" for="domain-input">領域タグ（地域・業界・分野など）</label>
+          <input type="text" id="domain-input" placeholder="例）公共交通 / インフラ">
+
+          <label class="field-label" for="author-input">名前（任意）</label>
+          <input type="text" id="author-input" placeholder="名無し">
+
+          <div class="toolbar">
+            <button class="btn" id="submit-card">書き留める</button>
+          </div>
+          <div class="status-line" id="submit-status"></div>
+        </section>
+
+        <section class="panel">
+          <h2 class="panel-title">集まった違和感</h2>
+          <div class="card-list" id="card-list">
+            <div class="empty-note">読み込み中…</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- RIGHT: matching + ideas -->
+      <div>
+        <section class="panel">
+          <h2 class="panel-title">掛け合わせてみる</h2>
+          <div class="toolbar">
+            <button class="btn stamp" id="draw-match">違和感を2つ引く</button>
+            <button class="btn secondary" id="shuffle-hints" disabled>別の問いにする</button>
+          </div>
+          <div class="status-line" id="match-status"></div>
+
+          <div id="match-area"></div>
+          <div class="hints" id="hints-area"></div>
+        </section>
+
+        <section class="panel" id="idea-panel" style="display:none;">
+          <h2 class="panel-title">浮かんだ企画をメモする</h2>
+          <textarea id="idea-input" rows="3" placeholder="問いに答える形で、思いついたことを書いてみる"></textarea>
+          <div class="toolbar">
+            <button class="btn" id="save-idea">企画として残す</button>
+          </div>
+          <div class="status-line" id="idea-status"></div>
+        </section>
+
+        <section class="panel">
+          <h2 class="panel-title">企画ログ（自分だけに表示）</h2>
+          <div id="idea-log-gate" class="empty-note">
+            企画ログを保存・閲覧するにはGoogleでログインしてください（画面上部）。
+          </div>
+          <div class="idea-log" id="idea-log" style="display:none;"></div>
+        </section>
+      </div>
+    </div>
+
+    <p class="footnote">
+      書き留めた違和感の単語帳は、このページを開いた全員で共有されます。誰でも自由に書き留めたり、掛け合わせに使ったりできます。企画ログはGoogleログインしたアカウントごとに保存され、他の人からは見えません。</p>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+
+</html>
