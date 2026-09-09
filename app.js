@@ -205,7 +205,7 @@
     if(!currentMatch){ el.innerHTML = ''; return; }
     const { a, b } = currentMatch;
     const shuffled = [...HINT_TEMPLATES].sort(() => Math.random() - 0.5).slice(0, 1);
-    el.innerHTML = shuffled.map(fn => `<div class="hint-item" style="font-weight:700; color:var(--text-main); background: #fdfcf9; padding: 12px 16px; border-left: 4px solid var(--accent-secondary); border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">${escapeHtml(fn(a.text, b.text))}</div>`).join('');
+    el.innerHTML = shuffled.map(fn => `<div class="hint-item">${escapeHtml(fn(a.text, b.text))}</div>`).join('');
   }
 
   document.getElementById('draw-match').addEventListener('click', () => {
