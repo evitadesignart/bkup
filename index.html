@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=202609091430">
+  <link rel="stylesheet" href="./style.css?v=202609091435">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <!-- ========================================
@@ -44,11 +44,8 @@
       </div>
     </header>
 
-    <!-- Main Layout Container (Notebook + Hint Board) -->
-    <div class="main-layout">
-      
-      <!-- Main Notebook Container -->
-      <main class="notebook">
+    <!-- Main Notebook Container -->
+    <main class="notebook">
       <div class="notebook-rings">
         <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
         <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
@@ -65,9 +62,6 @@
         <div class="input-card">
           <label for="text-input" class="card-label">気になったこと・引っかかったこと</label>
           <textarea id="text-input" rows="3" placeholder="例）バスの停車ボタンのデザインが何十年も変わっていない"></textarea>
-
-          <label for="domain-input" class="card-label">領域タグ（地域・業界・分野など）</label>
-          <input type="text" id="domain-input" placeholder="例）公共交通 / インフラ">
 
           <div class="action-row">
             <button class="btn btn-write" id="submit-card">ノートに書き込む</button>
@@ -128,43 +122,31 @@
           </details>
         </div>
       </section>
-
     </main>
 
-    <!-- Hint Board (Outside Notebook) -->
+    <!-- Hint Board (Below Notebook) -->
     <aside class="hint-board">
-      <h3 class="hint-title">💡 ひらめきヒントボード</h3>
-      <p class="hint-desc">引いた2つのタネをどう繋ぐか？具体的な考え方の例です。</p>
+      <h3 class="hint-title">💡 企画の作り方（強制発想法）</h3>
+      <p class="hint-desc">引いた2つのタネをどう企画にするか？<br><strong>「Aの特徴を、Bの世界にムリヤリ持ち込む」</strong>と考えてみましょう。</p>
 
       <div class="hint-card">
-        <div class="hint-card-title">① 役割をずらす（SCAMPER法）</div>
+        <div class="hint-card-title">思考の例</div>
         <div class="hint-diagram">
-          <span class="seed">バスのボタン</span> × <span class="seed">カフェ</span>
+          <div class="seed-row">
+            <span class="seed">満員電車</span> × <span class="seed">カフェ</span>
+          </div>
           <div class="arrow">↓</div>
-          <div class="idea-result">カフェの席に「お冷おかわり」を呼ぶバスのボタンを設置する</div>
-        </div>
-      </div>
-
-      <div class="hint-card">
-        <div class="hint-card-title">② 状況を逆転する（5W1H）</div>
-        <div class="hint-diagram">
-          <span class="seed">満員電車</span> × <span class="seed">スマホゲーム</span>
+          <div class="idea-step">
+            <strong>カフェの特徴（座れる、コーヒー、予約できる）</strong>を<br>満員電車に持ち込んだらどうなる？
+          </div>
           <div class="arrow">↓</div>
-          <div class="idea-result">満員電車のように「人が密集している場所」でしかプレイできない位置情報ゲーム</div>
-        </div>
-      </div>
-
-      <div class="hint-card">
-        <div class="hint-card-title">③ 当たり前を輸入する（アナロジー）</div>
-        <div class="hint-diagram">
-          <span class="seed">美容室の予約</span> × <span class="seed">スーパーのレジ</span>
-          <div class="arrow">↓</div>
-          <div class="idea-result">スーパーのレジも美容室のように「指名・事前予約制」にする</div>
+          <div class="idea-result">
+            👉 座席を事前予約できる「カフェ車両」を導入する<br>
+            👉 満員電車の中で、サブスクでコーヒーが受け取れるサービス
+          </div>
         </div>
       </div>
     </aside>
-
-    </div><!-- /.main-layout -->
 
     <footer class="footer">
       <p>書き留めた違和感の単語帳は、このページを開いた全員で共有されます。</p>

@@ -145,10 +145,10 @@
 
   document.getElementById('submit-card').addEventListener('click', async () => {
     const text = document.getElementById('text-input').value.trim();
-    const domain = document.getElementById('domain-input').value.trim();
+    const domain = "一般"; // 領域タグは廃止したため固定値
 
-    if(!text || !domain){
-      setStatus('submit-status', 'テキストと領域タグは両方入力してください。', true);
+    if(!text){
+      setStatus('submit-status', 'テキストを入力してください。', true);
       return;
     }
 
@@ -160,7 +160,6 @@
       await api('./api/cards.php', { method: 'POST', body: JSON.stringify({ text, domain }) });
       setStatus('submit-status', '書き留めました。');
       document.getElementById('text-input').value = '';
-      document.getElementById('domain-input').value = '';
       await loadCards();
     }catch(e){
       setStatus('submit-status', e.message, true);

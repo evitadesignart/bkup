@@ -43,11 +43,7 @@ html, body {
 .bg-crowd { background-image: url('assets/bg_crowd.jpg?v=2'); }
 /* Note: You can add bg_street, bg_sea, etc. here and cycle them in JS */
 
-.wrap { max-width: 1200px; margin: 0 auto; padding: 30px 20px 80px; position: relative; z-index: 1; }
-
-/* Main Layout Grid */
-.main-layout { display: grid; grid-template-columns: 1fr 340px; gap: 30px; align-items: start; }
-@media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } }
+.wrap { max-width: 800px; margin: 0 auto; padding: 30px 20px 80px; position: relative; z-index: 1; }
 
 /* Header */
 .top-header {
@@ -174,26 +170,28 @@ button { font-family: inherit; cursor: pointer; }
 .idea-panel { background: #f4f6f7; border: 1px dashed #bdc3c7; border-radius: 6px; padding: 20px; margin-top: 24px; }
 .idea-panel h3 { margin: 0 0 16px; font-size: 16px; color: var(--text-main); font-weight: 700; }
 
-/* Hint Board (Outside Notebook) */
+/* Hint Board (Below Notebook) */
 .hint-board {
   background: rgba(255,255,255,0.9);
-  border-radius: 12px; padding: 24px;
+  border-radius: 12px; padding: 30px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  position: sticky; top: 30px;
+  margin-top: 30px;
 }
-.hint-title { font-family: 'Zen Maru Gothic', sans-serif; font-size: 18px; color: var(--accent-primary); margin: 0 0 8px; }
-.hint-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+.hint-title { font-family: 'Zen Maru Gothic', sans-serif; font-size: 20px; color: var(--accent-primary); margin: 0 0 10px; }
+.hint-desc { font-size: 14.5px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
 
 .hint-card {
-  background: #fff; border: 1px solid #ddd; border-left: 4px solid var(--accent-primary);
-  border-radius: 6px; padding: 14px; margin-bottom: 16px;
-  box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+  background: #fff; border: 1px solid #ddd; border-left: 5px solid var(--accent-primary);
+  border-radius: 6px; padding: 20px; margin-bottom: 16px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
 }
-.hint-card-title { font-weight: 700; font-size: 13.5px; margin-bottom: 10px; color: var(--text-main); }
-.hint-diagram { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
-.hint-diagram .seed { background: #fdfbf7; border: 1px solid #ccc; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
-.hint-diagram .arrow { color: var(--accent-primary); font-weight: bold; }
-.hint-diagram .idea-result { background: rgba(230, 126, 34, 0.1); color: var(--accent-primary-hover); padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 700; width: 100%; line-height: 1.4; }
+.hint-card-title { font-weight: 700; font-size: 15px; margin-bottom: 16px; color: var(--text-main); text-align: center; background: #f9f9f9; padding: 8px; border-radius: 4px; }
+.hint-diagram { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.hint-diagram .seed-row { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
+.hint-diagram .seed { background: #fdfbf7; border: 1px solid #ccc; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; }
+.hint-diagram .arrow { color: var(--accent-primary); font-weight: bold; font-size: 20px; }
+.hint-diagram .idea-step { background: rgba(0,0,0,0.03); border: 1px dashed #ccc; padding: 12px; border-radius: 8px; font-size: 14px; line-height: 1.5; width: 100%; }
+.hint-diagram .idea-result { background: rgba(230, 126, 34, 0.1); color: var(--accent-primary-hover); padding: 16px; border-radius: 8px; font-size: 14.5px; font-weight: 700; width: 100%; line-height: 1.6; border: 1px solid rgba(230, 126, 34, 0.3); }
 
 /* Details/Summary for Lists */
 .recent-list-toggle { margin-top: 20px; font-size: 14px; margin-left: 44px; }
