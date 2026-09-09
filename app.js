@@ -372,10 +372,12 @@
   }
 
   // ---------- Init ----------
+  document.addEventListener('DOMContentLoaded', () => {
+    initCarouselDrag();
+  });
   window.addEventListener('load', () => {
     // Google script loads async; give it a brief moment, then init auth regardless
     setTimeout(initAuth, 300);
-    initCarouselDrag();
   });
   loadCards();
   loadBackgrounds();
