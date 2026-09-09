@@ -347,14 +347,16 @@
 
     const snapBack = () => {
       isDown = false;
-      slider.style.cursor = 'auto';
+      slider.style.cursor = 'grab';
       slider.style.scrollSnapType = 'x mandatory'; // ドラッグ終了時にスナップを戻す
+      slider.style.removeProperty('user-select');
     };
 
     slider.addEventListener('mousedown', (e) => {
       isDown = true;
       slider.style.cursor = 'grabbing';
       slider.style.scrollSnapType = 'none'; // ドラッグ中はCSSの強制スナップを解除する
+      slider.style.userSelect = 'none'; // テキスト選択を無効化
       startX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
     });
@@ -362,9 +364,9 @@
     slider.addEventListener('mouseup', snapBack);
     slider.addEventListener('mousemove', (e) => {
       if(!isDown) return;
-      e.preventDefault();
+      e.preventDefault(); // テキスト選択等のデフォルト動作を完全にブロック
       const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 2; // スクロール速度
+      const walk = (x - startX) * 2.5; // スクロール速度を少し速く
       slider.scrollLeft = scrollLeft - walk;
     });
   }
