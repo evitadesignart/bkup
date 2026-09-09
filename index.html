@@ -9,7 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=202609091446">
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./style.css?v=202609091510">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <!-- ========================================
@@ -55,7 +57,7 @@
       <section class="step-section">
         <div class="step-header">
           <span class="step-num">1</span>
-          <h2>日常の違和感を書き留める</h2>
+          <h2><i class="fa-solid fa-pen-nib"></i> 日常の違和感を書き留める</h2>
         </div>
         <p class="step-desc">※ジャンル問わず、今日見かけた「なぜ？」「使いづらい」を自由にメモしてください。</p>
         
@@ -64,14 +66,14 @@
           <textarea id="text-input" rows="3" placeholder="例）バスの停車ボタンのデザインが何十年も変わっていない"></textarea>
 
           <div class="action-row">
-            <button class="btn btn-write" id="submit-card">ノートに書き込む</button>
+            <button class="btn btn-write" id="submit-card"><i class="fa-solid fa-book-open"></i> ノートに書き込む</button>
             <span class="status-line" id="submit-status"></span>
           </div>
         </div>
 
         <div class="recent-list-toggle">
           <details>
-            <summary>みんなが書き留めたタネを見る</summary>
+            <summary><i class="fa-solid fa-list-ul"></i> 最近の違和感リストを表示</summary>
             <div class="card-list" id="card-list">
               <div class="empty-note">読み込み中…</div>
             </div>
@@ -85,27 +87,24 @@
       <section class="step-section">
         <div class="step-header">
           <span class="step-num">2</span>
-          <h2>タネを掛け合わせて企画にする</h2>
+          <h2><i class="fa-solid fa-bolt"></i> 違和感を掛け合わせる</h2>
         </div>
         <p class="step-desc">※書き溜めた違和感をランダムに2つ選び、新しいアイデアのヒントを生み出します。</p>
         
         
         <div class="draw-area">
-          <button class="btn btn-draw" id="draw-match">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-            違和感を2つ引く
-          </button>
-          <button class="btn btn-shuffle" id="shuffle-hints" disabled>別の問いにする</button>
-          <div class="status-line" id="match-status"></div>
+          <button class="btn btn-draw" id="draw-match"><i class="fa-solid fa-shuffle"></i> ランダムに2つ引く</button>
+          <button class="btn btn-shuffle" id="shuffle-hints"><i class="fa-solid fa-dice"></i> 別の考え方を引く</button>
+          <div class="status-line error" id="match-status" style="margin-top:10px;"></div>
         </div>
 
         <div id="match-area"></div>
         <div class="hints" id="hints-area"></div>
 
         <div id="idea-panel" style="display:none;" class="idea-panel">
-          <h3>💡 ひらめきメモ</h3>
+          <h3>ひらめきメモ</h3>
 
-          <textarea id="idea-input" rows="3" placeholder="問いに答える形で、思いついたことを書いてみる"></textarea>
+          <textarea id="idea-input" rows="3" placeholder="（例）これらを組み合わせると..."></textarea>
           <div class="action-row">
             <button class="btn btn-save" id="save-idea">企画として残す</button>
             <span class="status-line" id="idea-status"></span>
@@ -126,43 +125,43 @@
 
     <!-- Hint Board (Below Notebook) -->
     <aside class="hint-board">
-      <h3 class="hint-title">💡 企画の作り方（スワイプで3つの考え方）</h3>
+      <h3 class="hint-title"><i class="fa-solid fa-lightbulb"></i> 企画の作り方（スワイプで3つの考え方）</h3>
       <p class="hint-desc">引いた2つのタネをどう企画にするか？横にスワイプして考え方を変えてみましょう。</p>
 
       <div class="hint-carousel">
         <!-- 1. 強制発想法 -->
         <div class="hint-card">
-          <div class="hint-card-title">① 特徴を持ち込む（強制発想法）<br><span style="font-size:11px; color:#666; font-weight:normal;">※C.S.ホワイティング提唱 (1958)</span></div>
+          <div class="hint-card-title">① 特徴を持ち込む（強制発想法）<br><span class="card-author">※C.S.ホワイティング提唱 (1958)</span></div>
           <div class="hint-diagram">
             <div class="seed-row"><span class="seed">満員電車</span> × <span class="seed">カフェ</span></div>
-            <div class="arrow">↓</div>
+            <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
             <div class="idea-step"><strong>カフェの特徴（座れる、コーヒー）</strong>を満員電車にムリヤリ持ち込む</div>
-            <div class="arrow">↓</div>
-            <div class="idea-result">👉 座席予約できる通勤ライナー<br>👉 サブスクでコーヒーが配られる電車</div>
+            <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="idea-result"><i class="fa-solid fa-check"></i> 座席予約できる通勤ライナー<br><i class="fa-solid fa-check"></i> サブスクでコーヒーが配られる電車</div>
           </div>
         </div>
 
         <!-- 2. 役割の逆転 -->
         <div class="hint-card">
-          <div class="hint-card-title">② 目的を逆転する（SCAMPER法）<br><span style="font-size:11px; color:#666; font-weight:normal;">※B.エバール提唱 (1971)</span></div>
+          <div class="hint-card-title">② 目的を逆転する（SCAMPER法）<br><span class="card-author">※B.エバール提唱 (1971)</span></div>
           <div class="hint-diagram">
             <div class="seed-row"><span class="seed">歩く</span> × <span class="seed">スマホゲーム</span></div>
-            <div class="arrow">↓</div>
+            <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
             <div class="idea-step">「歩くための手段」ではなく、「歩くこと自体をゲームの目的」にする</div>
-            <div class="arrow">↓</div>
-            <div class="idea-result">👉 距離でモンスターが育つ位置情報ゲーム<br>👉 歩数が通貨になるお小遣いアプリ</div>
+            <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="idea-result"><i class="fa-solid fa-check"></i> 距離でモンスターが育つ位置情報ゲーム<br><i class="fa-solid fa-check"></i> 歩数が通貨になるお小遣いアプリ</div>
           </div>
         </div>
 
         <!-- 3. 当たり前の移植（アナロジー） -->
         <div class="hint-card">
-          <div class="hint-card-title">③ 当たり前を移植する（シネクティクス法）<br><span style="font-size:11px; color:#666; font-weight:normal;">※W.J.J.ゴードン提唱 (1961)</span></div>
+          <div class="hint-card-title">③ 当たり前を移植する（シネクティクス法）<br><span class="card-author">※W.J.J.ゴードン提唱 (1961)</span></div>
           <div class="hint-diagram">
             <div class="seed-row"><span class="seed">スーパーのレジ</span> × <span class="seed">美容室</span></div>
-            <div class="arrow">↓</div>
+            <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
             <div class="idea-step">美容室の当たり前（担当者の指名・予約制）をレジに移植する</div>
-            <div class="arrow">↓</div>
-            <div class="idea-result">👉 好きな店員を指名できる「指名制レジ」<br>👉 レジに並ばない「時間予約レジ」</div>
+            <div class="arrow"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="idea-result"><i class="fa-solid fa-check"></i> 好きな店員を指名できる「指名制レジ」<br><i class="fa-solid fa-check"></i> レジに並ばない「時間予約レジ」</div>
           </div>
         </div>
       </div>
