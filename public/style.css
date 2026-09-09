@@ -152,6 +152,14 @@ button{ font-family: inherit; cursor: pointer; }
 
 .toolbar{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 
+.frameworks-box{
+  background: var(--paper-light); border: 1px dashed var(--ochre);
+  border-radius: 2px; padding: 12px 14px; margin-bottom: 16px;
+}
+.frameworks-title{ font-size: 13px; font-weight: 700; color: var(--ochre); margin-bottom: 8px; }
+.frameworks-list{ margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.7; color: var(--ink); }
+.frameworks-list li{ margin-bottom: 4px; }
+
 .footnote{
   margin-top: 40px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.8;
   border-top: 1px dashed var(--rule-strong); padding-top: 16px;
