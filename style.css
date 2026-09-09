@@ -36,6 +36,7 @@ html, body {
   transform: scale(1.05);
   opacity: 0;
   transition: opacity 3s ease-in-out;
+}
 .bg-image.active { opacity: 1; }
 
 .bg-cafe { background-image: url('assets/bg_cafe.jpg?v=2'); }
