@@ -36,21 +36,17 @@
 </head>
 
 <body>
-  <!-- Dynamic Background -->
+  <!-- Dynamic Real World Background -->
   <div class="bg-fx">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <div class="bg-image bg-cafe"></div>
   </div>
 
   <div class="wrap">
-    <header class="top glass-panel">
-      <div class="stamp-mark">発想トレーニングツール</div>
+    <header class="top glass-panel-header">
       <h1 class="title">キカクノタネ</h1>
       <p class="subtitle">
-        <strong>日常の違和感に気づき、ランダムな掛け合わせで「発想力」を鍛える。</strong><br>
-        AIが瞬時に答えを出す時代だからこそ、人間ならではの「気づき」が最も価値を持ちます。<br>
-        思いついたことを書き留め、全く違うものと結びつけることで、新しい企画の種を生み出しましょう。
+        <strong>日常の風景からインスピレーションを得て、「発想力」を鍛える。</strong><br>
+        思いついた日常の些細な「違和感」を書き留め、全く違うものと結びつけることで、新しい企画の種を生み出しましょう。
       </p>
 
       <div class="auth-box" id="auth-box">
@@ -59,10 +55,11 @@
     </header>
 
     <div class="grid">
-      <!-- LEFT: submission + card list -->
-      <div>
+      <!-- STEP 1: submission -->
+      <div class="step-column">
+        <div class="step-badge">STEP 1</div>
         <section class="panel glass-panel">
-          <h2 class="panel-title">タネ帳に書き留める</h2>
+          <h2 class="panel-title">まずは日常の違和感を書き留める</h2>
 
           <div class="examples-box">
             <div class="examples-title">こんなことでOK</div>
@@ -71,7 +68,7 @@
               <li>バスの停車ボタンのデザインが何十年も変わっていない</li>
               <li>厚労省の個人輸入システムがわかりづらい</li>
             </ul>
-            <div class="examples-note">ジャンルは気にしなくてOK。気になったことをそのまま書き留めましょう。</div>
+            <div class="examples-note">ジャンルは気にしなくてOK。カフェや街中でのちょっとした気づきをそのまま書き留めましょう。</div>
           </div>
 
           <label class="field-label" for="text-input">気になったこと・引っかかったこと</label>
@@ -86,21 +83,22 @@
           <div class="status-line" id="submit-status"></div>
         </section>
 
-        <section class="panel glass-panel">
-          <h2 class="panel-title">集まった違和感</h2>
+        <section class="panel glass-panel-soft">
+          <h2 class="panel-title-small">集まった違和感</h2>
           <div class="card-list" id="card-list">
             <div class="empty-note">読み込み中…</div>
           </div>
         </section>
       </div>
 
-      <!-- RIGHT: matching + ideas -->
-      <div>
+      <!-- STEP 2: matching + ideas -->
+      <div class="step-column">
+        <div class="step-badge step-2-badge">STEP 2</div>
         <section class="panel glass-panel">
-          <h2 class="panel-title">掛け合わせてみる</h2>
+          <h2 class="panel-title">集まったタネを掛け合わせる</h2>
           <div class="toolbar">
-            <button class="btn action-btn" id="draw-match">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <button class="btn action-btn-large" id="draw-match">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
               違和感を2つ引く
             </button>
             <button class="btn secondary" id="shuffle-hints" disabled>別の問いにする</button>
@@ -130,8 +128,8 @@
           <div class="status-line" id="idea-status"></div>
         </section>
 
-        <section class="panel glass-panel">
-          <h2 class="panel-title">企画ログ（自分だけに表示）</h2>
+        <section class="panel glass-panel-soft">
+          <h2 class="panel-title-small">企画ログ（自分だけに表示）</h2>
           <div id="idea-log-gate" class="empty-note">
             企画ログを保存・閲覧するにはGoogleでログインしてください。
           </div>
@@ -140,7 +138,7 @@
       </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer glass-panel-soft">
       <p>
         書き留めた違和感の単語帳は、このページを開いた全員で共有されます。誰でも自由に書き留めたり、掛け合わせに使ったりできます。企画ログはGoogleアカウントごとに保存され、他の人からは見えません。
       </p>
