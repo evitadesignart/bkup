@@ -233,6 +233,22 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hint-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
 
+@media (max-width: 600px) {
+  .hint-board { padding: 24px 16px; margin-top: 30px; }
+  .hint-carousel {
+    flex-direction: column;
+    overflow-x: visible;
+    gap: 16px;
+    padding-bottom: 0;
+  }
+  .hint-card {
+    min-width: 100%;
+    width: 100%;
+  }
+  .hint-diagram { padding: 16px; }
+  .hint-diagram .idea-step, .hint-diagram .idea-result { font-size: 13px; padding: 12px; }
+}
+
 .hint-card-title { 
   background: #1a252f; /* 上一段ネイビー背景 */
   color: #fff; /* 白文字 */
