@@ -47,7 +47,7 @@
   // ---------- Auth ----------
   async function initAuth(){
     try{
-      const config = await api('../api/config.php');
+      const config = await api('./api/config.php');
       if(config.googleClientId && window.google && window.google.accounts){
         google.accounts.id.initialize({
           client_id: config.googleClientId,
@@ -68,7 +68,7 @@
 
   async function handleCredentialResponse(response){
     try{
-      const user = await api('../api/auth.php?action=google', {
+      const user = await api('./api/auth.php?action=google', {
         method: 'POST',
         body: JSON.stringify({ credential: response.credential }),
       });
@@ -82,7 +82,7 @@
 
   async function refreshUser(){
     try{
-      const data = await api('../api/auth.php?action=me');
+      const data = await api('./api/auth.php?action=me');
       currentUser = data.user;
     }catch(e){
       currentUser = null;
@@ -104,7 +104,7 @@
         </div>
       `;
       document.getElementById('logout-link').addEventListener('click', async () => {
-        await api('../api/auth.php?action=logout', { method: 'POST' });
+        await api('./api/auth.php?action=logout', { method: 'POST' });
         currentUser = null;
         renderAuthBox();
       });
@@ -121,7 +121,7 @@
   // ---------- Cards ----------
   async function loadCards(){
     try{
-      cards = await api('../api/cards.php');
+      cards = await api('./api/cards.php');
     }catch(e){
       cards = [];
     }
@@ -138,7 +138,7 @@
       <div class="mini-card">
         <span class="tag">${escapeHtml(c.domain)}</span>
         <div class="text">${escapeHtml(c.text)}</div>
-        <div class="meta">${escapeHtml(c.author || '名無し')} ・ ${new Date(c.created_at).toLocaleDateString('ja-JP')}</div>
+        <div class="meta">${new Date(c.created_at).toLocaleDateString('ja-JP')}</div>
       </div>
     `).join('');
   }
@@ -146,7 +146,6 @@
   document.getElementById('submit-card').addEventListener('click', async () => {
     const text = document.getElementById('text-input').value.trim();
     const domain = document.getElementById('domain-input').value.trim();
-    const author = document.getElementById('author-input').value.trim();
 
     if(!text || !domain){
       setStatus('submit-status', 'テキストと領域タグは両方入力してください。', true);
@@ -158,7 +157,7 @@
     setStatus('submit-status', '保存しています…');
 
     try{
-      await api('../api/cards.php', { method: 'POST', body: JSON.stringify({ text, domain, author }) });
+      await api('./api/cards.php', { method: 'POST', body: JSON.stringify({ text, domain }) });
       setStatus('submit-status', '書き留めました。');
       document.getElementById('text-input').value = '';
       document.getElementById('domain-input').value = '';
@@ -194,13 +193,11 @@
     area.innerHTML = `
       <div class="match-row">
         <div class="match-card">
-          <span class="letter">A</span>
           <div class="tag">${escapeHtml(a.domain)}</div>
           <div class="text">${escapeHtml(a.text)}</div>
         </div>
         <div class="match-x">×</div>
         <div class="match-card">
-          <span class="letter">B</span>
           <div class="tag">${escapeHtml(b.domain)}</div>
           <div class="text">${escapeHtml(b.text)}</div>
         </div>
@@ -240,7 +237,7 @@
       return;
     }
     try{
-      const ideas = await api('../api/ideas.php');
+      const ideas = await api('./api/ideas.php');
       renderIdeaLog(ideas);
     }catch(e){
       document.getElementById('idea-log').innerHTML = '<div class="empty-note">企画ログの読み込みに失敗しました。</div>';
@@ -284,7 +281,7 @@
     setStatus('idea-status', '保存しています…');
 
     try{
-      await api('../api/ideas.php', {
+      await api('./api/ideas.php', {
         method: 'POST',
         body: JSON.stringify({
           text,

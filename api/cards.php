@@ -35,6 +35,16 @@ if ($method === 'POST') {
         echo json_encode(['error' => "領域タグは{$MAX_DOMAIN_LEN}文字以内にしてください"]);
         exit;
     }
+
+    // スパム・テスト・不適切ワードのブロック
+    $ng_words = ['テスト', 'test', 'あああ', '死ね', '殺す', '馬鹿', 'バカ', 'アホ', 'クソ', 'fuck', 'shit'];
+    foreach ($ng_words as $ng) {
+        if (mb_stripos($text, $ng) !== false || mb_stripos($domain, $ng) !== false) {
+            http_response_code(400);
+            echo json_encode(['error' => 'テスト入力や不適切な単語が含まれているため保存できませんでした。']);
+            exit;
+        }
+    }
     
     $id = sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
       mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff),
@@ -42,8 +52,8 @@ if ($method === 'POST') {
       mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
     );
     $createdAt = time() * 1000;
-    $cleanAuthor = mb_substr($author, 0, $MAX_AUTHOR_LEN);
-    if (!$cleanAuthor) $cleanAuthor = '名無し';
+    $cleanAuthor = ''; // 名前フィールドは廃止
+
     
     $stmt = $db->prepare('INSERT INTO cards (id, text, domain, author, created_at) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute([$id, $text, $domain, $cleanAuthor, $createdAt]);

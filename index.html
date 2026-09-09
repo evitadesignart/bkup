@@ -7,10 +7,9 @@
   <title>キカクノタネ | 1日5分、違和感から始める発想トレーニング</title>
   <meta name="description" content="AIに代替されにくい能力を育成する企画力養成ツール。日々の「違和感」をネタ帳感覚で書き留め、ランダムに掛け合わせることで、1日5分でカンタンに発想トレーニングができます。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <!-- ========================================
@@ -19,9 +18,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CX0Q57RVS9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-CX0Q57RVS9');
   </script>
@@ -31,30 +28,29 @@
   ========================================= -->
   <script type="text/javascript">
     (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () {
-        (c[a].q = c[a].q || []).push(arguments);
-      };
-
-      t = l.createElement(r);
-      t.async = 1;
-      t.src = "https://www.clarity.ms/tag/" + i;
-
-      y = l.getElementsByTagName(r)[0];
-      y.parentNode.insertBefore(t, y);
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "xpag8axifh");
   </script>
 </head>
 
 <body>
-  <div class="wrap">
+  <!-- Dynamic Background -->
+  <div class="bg-fx">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
 
-    <header class="top">
-      <div class="stamp-mark">1日5分でできる発想トレーニング</div>
+  <div class="wrap">
+    <header class="top glass-panel">
+      <div class="stamp-mark">発想トレーニングツール</div>
       <h1 class="title">キカクノタネ</h1>
       <p class="subtitle">
-        <strong>AIに代替されにくい「発想力」を鍛える企画力養成ツールです。</strong><br>
-        AIが瞬時に答えを出す時代だからこそ、人間ならではの「日常の違和感」に気づき、全く違うものと結びつける力が最も価値を持ちます。<br>
-        気になったことや困ったことを単語帳のように書き留め、ランダムに掛け合わせることで、新しい企画の種が次々と生まれる脳のトレーニングを始めましょう。
+        <strong>日常の違和感に気づき、ランダムな掛け合わせで「発想力」を鍛える。</strong><br>
+        AIが瞬時に答えを出す時代だからこそ、人間ならではの「気づき」が最も価値を持ちます。<br>
+        思いついたことを書き留め、全く違うものと結びつけることで、新しい企画の種を生み出しましょう。
       </p>
 
       <div class="auth-box" id="auth-box">
@@ -65,7 +61,7 @@
     <div class="grid">
       <!-- LEFT: submission + card list -->
       <div>
-        <section class="panel">
+        <section class="panel glass-panel">
           <h2 class="panel-title">タネ帳に書き留める</h2>
 
           <div class="examples-box">
@@ -73,10 +69,9 @@
             <ul class="examples-list">
               <li>バングラデシュ人が日本企業に馴染むためのコーチングサービス</li>
               <li>バスの停車ボタンのデザインが何十年も変わっていない</li>
-              <li>証明写真を撮ったあと、シャツの色をあとから変えられない</li>
               <li>厚労省の個人輸入システムがわかりづらい</li>
             </ul>
-            <div class="examples-note">ジャンルや分類は気にしなくてOK。気になったことをそのまま書けば大丈夫です。ログイン不要で誰でも投稿できます。</div>
+            <div class="examples-note">ジャンルは気にしなくてOK。気になったことをそのまま書き留めましょう。</div>
           </div>
 
           <label class="field-label" for="text-input">気になったこと・引っかかったこと</label>
@@ -85,16 +80,13 @@
           <label class="field-label" for="domain-input">領域タグ（地域・業界・分野など）</label>
           <input type="text" id="domain-input" placeholder="例）公共交通 / インフラ">
 
-          <label class="field-label" for="author-input">名前（任意）</label>
-          <input type="text" id="author-input" placeholder="名無し">
-
           <div class="toolbar">
-            <button class="btn" id="submit-card">書き留める</button>
+            <button class="btn primary-btn" id="submit-card">書き留める</button>
           </div>
           <div class="status-line" id="submit-status"></div>
         </section>
 
-        <section class="panel">
+        <section class="panel glass-panel">
           <h2 class="panel-title">集まった違和感</h2>
           <div class="card-list" id="card-list">
             <div class="empty-note">読み込み中…</div>
@@ -104,10 +96,13 @@
 
       <!-- RIGHT: matching + ideas -->
       <div>
-        <section class="panel">
+        <section class="panel glass-panel">
           <h2 class="panel-title">掛け合わせてみる</h2>
           <div class="toolbar">
-            <button class="btn stamp" id="draw-match">違和感を2つ引く</button>
+            <button class="btn action-btn" id="draw-match">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              違和感を2つ引く
+            </button>
             <button class="btn secondary" id="shuffle-hints" disabled>別の問いにする</button>
           </div>
           <div class="status-line" id="match-status"></div>
@@ -116,40 +111,46 @@
           <div class="hints" id="hints-area"></div>
         </section>
 
-        <section class="panel" id="idea-panel" style="display:none;">
+        <section class="panel glass-panel" id="idea-panel" style="display:none;">
           <h2 class="panel-title">浮かんだ企画をメモする</h2>
           
           <div class="frameworks-box">
-            <div class="frameworks-title">💡 企画をひねり出すフレームワーク</div>
+            <div class="frameworks-title">💡 ひらめきフレームワーク</div>
             <ul class="frameworks-list">
-              <li><strong>SCAMPER法：</strong> 代用できないか？逆にしたら？大げさにしたら？別の用途はないか？</li>
-              <li><strong>5W1Hのずらし：</strong> 「誰が」「いつ」「どこで」使うかを、あえて極端にずらしてみる。</li>
-              <li><strong>アナロジー（類推）：</strong> 似た構造を持つ全く別の業界の「当たり前の仕組み」を真似てみる。</li>
+              <li><strong>SCAMPER法：</strong> 代用できないか？逆にしたら？大げさにしたら？</li>
+              <li><strong>5W1Hのずらし：</strong> 「誰が」「いつ」「どこで」使うかを極端にずらす。</li>
+              <li><strong>アナロジー：</strong> 全く別の業界の「当たり前の仕組み」を真似る。</li>
             </ul>
           </div>
 
           <textarea id="idea-input" rows="3" placeholder="問いに答える形で、思いついたことを書いてみる"></textarea>
           <div class="toolbar">
-            <button class="btn" id="save-idea">企画として残す</button>
+            <button class="btn primary-btn" id="save-idea">企画として残す</button>
           </div>
           <div class="status-line" id="idea-status"></div>
         </section>
 
-        <section class="panel">
+        <section class="panel glass-panel">
           <h2 class="panel-title">企画ログ（自分だけに表示）</h2>
           <div id="idea-log-gate" class="empty-note">
-            企画ログを保存・閲覧するにはGoogleでログインしてください（画面上部）。
+            企画ログを保存・閲覧するにはGoogleでログインしてください。
           </div>
           <div class="idea-log" id="idea-log" style="display:none;"></div>
         </section>
       </div>
     </div>
 
-    <p class="footnote">
-      書き留めた違和感の単語帳は、このページを開いた全員で共有されます。誰でも自由に書き留めたり、掛け合わせに使ったりできます。企画ログはGoogleログインしたアカウントごとに保存され、他の人からは見えません。</p>
+    <footer class="footer">
+      <p>
+        書き留めた違和感の単語帳は、このページを開いた全員で共有されます。誰でも自由に書き留めたり、掛け合わせに使ったりできます。企画ログはGoogleアカウントごとに保存され、他の人からは見えません。
+      </p>
+      <div class="footer-links">
+        <a href="./api/admin.php" class="admin-link">管理者ページ</a>
+      </div>
+    </footer>
   </div>
 
-  <script src="/app.js"></script>
+  <script src="./app.js"></script>
 </body>
 
 </html>
