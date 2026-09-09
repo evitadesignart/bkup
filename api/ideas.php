@@ -20,7 +20,23 @@ if ($method === 'GET') {
     exit;
 }
 
+$action = $_GET['action'] ?? '';
+
 if ($method === 'POST') {
+    if ($action === 'delete') {
+        $input = json_decode(file_get_contents('php://input'), true);
+        $id = trim($input['id'] ?? '');
+        if (!$id) {
+            http_response_code(400);
+            echo json_encode(['error' => 'IDが指定されていません']);
+            exit;
+        }
+        $stmt = $db->prepare('DELETE FROM ideas WHERE id = ? AND user_id = ?');
+        $stmt->execute([$id, $_SESSION['userId']]);
+        echo json_encode(['success' => true]);
+        exit;
+    }
+
     $input = json_decode(file_get_contents('php://input'), true);
     $text = trim($input['text'] ?? '');
     $aText = trim($input['aText'] ?? '');

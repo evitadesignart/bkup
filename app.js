@@ -261,7 +261,7 @@
   window.appDeleteIdea = async function(id) {
     if(!confirm('この企画を削除しますか？')) return;
     try {
-      await api('./api/ideas.php', { method: 'DELETE', body: JSON.stringify({ id }) });
+      await api('./api/ideas.php?action=delete', { method: 'POST', body: JSON.stringify({ id }) });
       await loadIdeas();
     } catch(e) {
       alert('削除に失敗しました: ' + e.message);
