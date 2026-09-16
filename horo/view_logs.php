@@ -1,4 +1,17 @@
 <?php
+// === BASIC認証の設定 ===
+// 必要に応じてIDとパスワードを変更してください
+$auth_user = 'admin';
+$auth_pass = 'password';
+
+if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) ||
+    $_SERVER['PHP_AUTH_USER'] !== $auth_user || $_SERVER['PHP_AUTH_PW'] !== $auth_pass) {
+    header('WWW-Authenticate: Basic realm="Admin Area"');
+    header('HTTP/1.0 401 Unauthorized');
+    die('ログインが必要です。');
+}
+// ========================
+
 $db_file = __DIR__ . '/tarot_log.sqlite';
 $logs = [];
 
@@ -56,6 +69,7 @@ if (file_exists($db_file)) {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
     <title>タロットログ確認（管理者用）</title>
     <style>
         body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
