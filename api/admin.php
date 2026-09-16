@@ -3,7 +3,7 @@ require_once 'db.php';
 session_start();
 
 // ★管理画面のパスワード（自由に変更してください）
-$ADMIN_PASSWORD = 'tane';
+$ADMIN_PASSWORD = 'evitamillion';
 
 if (isset($_GET['logout'])) {
     session_destroy();
