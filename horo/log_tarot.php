@@ -15,15 +15,25 @@ try {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         card_name TEXT NOT NULL,
         position TEXT NOT NULL,
+        ip_address TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
+
+    // 既存のテーブルに ip_address カラムがない場合は追加
+    try {
+        $pdo->exec("ALTER TABLE tarot_logs ADD COLUMN ip_address TEXT");
+    } catch (PDOException $e) {
+        // カラムが既に存在する場合はエラーになるため無視
+    }
 
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (isset($data['card_name']) && isset($data['position'])) {
-        $stmt = $pdo->prepare("INSERT INTO tarot_logs (card_name, position) VALUES (:card_name, :position)");
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+        $stmt = $pdo->prepare("INSERT INTO tarot_logs (card_name, position, ip_address) VALUES (:card_name, :position, :ip)");
         $stmt->bindParam(':card_name', $data['card_name']);
         $stmt->bindParam(':position', $data['position']);
+        $stmt->bindParam(':ip', $ip);
         $stmt->execute();
         
         echo json_encode(['status' => 'success', 'message' => 'Logged successfully']);

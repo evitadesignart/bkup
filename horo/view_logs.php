@@ -8,7 +8,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
         try {
             $pdo = new PDO('sqlite:' . $db_file);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $pdo->query("SELECT id, card_name, position, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY created_at DESC");
+            $stmt = $pdo->query("SELECT id, card_name, position, ip_address, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY created_at DESC");
             $all_logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             // UTF-8 の BOM を出力して Excel での文字化けを防ぐ
@@ -17,7 +17,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
             echo "\xEF\xBB\xBF";
             
             $output = fopen('php://output', 'w');
-            fputcsv($output, ['ID', 'カード名', '位置', '記録日時']);
+            fputcsv($output, ['ID', 'カード名', '位置', 'IPアドレス', '記録日時']);
             foreach ($all_logs as $row) {
                 fputcsv($output, $row);
             }
@@ -40,7 +40,7 @@ if (file_exists($db_file)) {
         $stmt = $pdo->query("SELECT name FROM sqlite_master WHERE type='table' AND name='tarot_logs'");
         if ($stmt->fetch()) {
             // 画面上は最新500件のみ表示
-            $stmt = $pdo->query("SELECT id, card_name, position, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY created_at DESC LIMIT 500");
+            $stmt = $pdo->query("SELECT id, card_name, position, ip_address, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY created_at DESC LIMIT 500");
             $logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             // 全件数を取得
@@ -96,6 +96,7 @@ if (file_exists($db_file)) {
                     <th>ID</th>
                     <th>カード名</th>
                     <th>位置</th>
+                    <th>IPアドレス</th>
                     <th>記録日時 (日本時間)</th>
                 </tr>
                 <?php foreach ($logs as $log): ?>
@@ -103,6 +104,7 @@ if (file_exists($db_file)) {
                     <td><?php echo htmlspecialchars($log['id']); ?></td>
                     <td><?php echo htmlspecialchars($log['card_name']); ?></td>
                     <td><?php echo htmlspecialchars($log['position']); ?></td>
+                    <td><?php echo htmlspecialchars($log['ip_address'] ?? '記録なし'); ?></td>
                     <td><?php echo htmlspecialchars($log['created_at']); ?></td>
                 </tr>
                 <?php endforeach; ?>
