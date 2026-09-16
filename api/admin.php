@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
     if ($_POST['password'] === $ADMIN_PASSWORD) {
         $_SESSION['admin_logged_in'] = true;
     } else {
+        sleep(3); // 認証失敗ペナルティ
         $error = "パスワードが違います";
     }
 }
@@ -23,7 +24,11 @@ if (empty($_SESSION['admin_logged_in'])) {
     ?>
     <!DOCTYPE html>
     <html lang="ja">
-    <head><meta charset="UTF-8"><title>管理画面</title></head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="robots" content="noindex, nofollow">
+        <title>管理画面</title>
+    </head>
     <body style="font-family: sans-serif; padding: 20px;">
         <h2>管理ログイン</h2>
         <?php if(!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
@@ -52,6 +57,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
     <title>タネ管理画面</title>
     <style>
         body { font-family: 'Zen Kaku Gothic New', sans-serif; padding: 0; margin: 0; background: #ecf0f1; color: #2c3e50; }
