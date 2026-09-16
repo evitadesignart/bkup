@@ -1,14 +1,59 @@
 <?php
 // === BASIC認証の設定 ===
 // 必要に応じてIDとパスワードを変更してください
-$auth_user = 'admin';
-$auth_pass = 'password';
+$auth_user = 'evitadesignart@gmail.com';
+$auth_pass = 'horomillion';
 
+// --- ログインペナルティ（ブルートフォース対策） ---
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$lock_file = __DIR__ . '/login_failures.json';
+$max_attempts = 5; // 許容する最大失敗回数
+$lock_time = 900; // ロック時間（秒） = 15分
+
+$failures = [];
+if (file_exists($lock_file)) {
+    $failures = json_decode(file_get_contents($lock_file), true) ?: [];
+}
+
+// 古い記録を削除してクリーンアップ
+$now = time();
+foreach ($failures as $f_ip => $data) {
+    if ($now - $data['time'] > $lock_time) {
+        unset($failures[$f_ip]);
+    }
+}
+
+// ロックされているか確認
+if (isset($failures[$ip]) && $failures[$ip]['count'] >= $max_attempts) {
+    header('HTTP/1.0 403 Forbidden');
+    die('ログイン試行回数が上限を超えました。しばらく時間をおいてから再度お試しください。');
+}
+
+// 認証チェック
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] !== $auth_user || $_SERVER['PHP_AUTH_PW'] !== $auth_pass) {
+    
+    // 失敗記録の更新
+    if (!isset($failures[$ip])) {
+        $failures[$ip] = ['count' => 0, 'time' => $now];
+    }
+    $failures[$ip]['count']++;
+    $failures[$ip]['time'] = $now;
+    file_put_contents($lock_file, json_encode($failures));
+
     header('WWW-Authenticate: Basic realm="Admin Area"');
     header('HTTP/1.0 401 Unauthorized');
-    die('ログインが必要です。');
+    
+    // 失敗時のペナルティとして2秒遅延させる
+    sleep(2);
+    
+    die('ログインに失敗しました、またはログインが必要です。');
+}
+
+// 認証成功時は記録をリセット
+if (isset($failures[$ip])) {
+    unset($failures[$ip]);
+    file_put_contents($lock_file, json_encode($failures));
 }
 // ========================
 
