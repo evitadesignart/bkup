@@ -8,7 +8,7 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
         try {
             $pdo = new PDO('sqlite:' . $db_file);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $pdo->query("SELECT id, card_name, position, ip_address, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY created_at DESC");
+            $stmt = $pdo->query("SELECT id, card_name, position, ip_address, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY id DESC");
             $all_logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             // UTF-8 の BOM を出力して Excel での文字化けを防ぐ
@@ -40,7 +40,7 @@ if (file_exists($db_file)) {
         $stmt = $pdo->query("SELECT name FROM sqlite_master WHERE type='table' AND name='tarot_logs'");
         if ($stmt->fetch()) {
             // 画面上は最新500件のみ表示
-            $stmt = $pdo->query("SELECT id, card_name, position, ip_address, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY created_at DESC LIMIT 500");
+            $stmt = $pdo->query("SELECT id, card_name, position, ip_address, datetime(created_at, '+9 hours') as created_at FROM tarot_logs ORDER BY id DESC LIMIT 500");
             $logs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             // 全件数を取得
