@@ -116,6 +116,15 @@ if (file_exists($db_file)) {
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow">
     <title>タロットログ確認（管理者用）</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CX0Q57RVS9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-CX0Q57RVS9');
+    </script>
     <style>
         body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
         .container { max-width: 800px; margin: 0 auto; }
