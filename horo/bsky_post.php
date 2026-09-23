@@ -72,6 +72,58 @@ if (isset($tarot_meanings[$first_card['card_name']]) && isset($tarot_meanings[$f
 $text .= $meaning_text . "\nみんなが引いたカードから、今週の世界の運気を感じ取ってみましょう🕊️✨\n#タロット占い #世相占い #占いアルカノヴァ\nhttps://evitadesignart.com/horo/";
 
 // Bluesky APIへの投稿処理
+function parseFacets($text) {
+    $facets = [];
+    
+    // URLの抽出
+    if (preg_match_all('/(https?:\/\/[^\s]+)/', $text, $matches, PREG_OFFSET_CAPTURE)) {
+        foreach ($matches[1] as $match) {
+            $url = $match[0];
+            $byteStart = $match[1];
+            $byteEnd = $byteStart + strlen($url);
+            
+            $facets[] = [
+                'index' => [
+                    'byteStart' => $byteStart,
+                    'byteEnd' => $byteEnd
+                ],
+                'features' => [
+                    [
+                        '$type' => 'app.bsky.richtext.facet#link',
+                        'uri' => $url
+                    ]
+                ]
+            ];
+        }
+    }
+    
+    // ハッシュタグの抽出 (#ハッシュタグ)
+    if (preg_match_all('/#([^\s#]+)/u', $text, $matches, PREG_OFFSET_CAPTURE)) {
+        foreach ($matches[0] as $index => $fullMatch) {
+            $tagWithHash = $fullMatch[0];
+            $byteStart = $fullMatch[1];
+            $byteEnd = $byteStart + strlen($tagWithHash);
+            
+            $tagWord = $matches[1][$index][0]; // #を除いた文字
+            
+            $facets[] = [
+                'index' => [
+                    'byteStart' => $byteStart,
+                    'byteEnd' => $byteEnd
+                ],
+                'features' => [
+                    [
+                        '$type' => 'app.bsky.richtext.facet#tag',
+                        'tag' => $tagWord
+                    ]
+                ]
+            ];
+        }
+    }
+    
+    return $facets;
+}
+
 function postToBluesky($handle, $appPassword, $text) {
     // 1. セッションの作成 (JWTトークン取得)
     $ch = curl_init('https://bsky.social/xrpc/com.atproto.server.createSession');
@@ -92,14 +144,22 @@ function postToBluesky($handle, $appPassword, $text) {
     $did = $session['did'];
 
     // 2. 投稿 (createRecord)
+    $facets = parseFacets($text);
+    
+    $record = [
+        '$type' => 'app.bsky.feed.post',
+        'text' => $text,
+        'createdAt' => gmdate('Y-m-d\TH:i:s\Z')
+    ];
+    
+    if (!empty($facets)) {
+        $record['facets'] = $facets;
+    }
+
     $postPayload = json_encode([
         'repo' => $did,
         'collection' => 'app.bsky.feed.post',
-        'record' => [
-            '$type' => 'app.bsky.feed.post',
-            'text' => $text,
-            'createdAt' => gmdate('Y-m-d\TH:i:s\Z')
-        ]
+        'record' => $record
     ]);
 
     $ch2 = curl_init('https://bsky.social/xrpc/com.atproto.repo.createRecord');
